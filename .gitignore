@@ -1,0 +1,9 @@
+# 忽略当前目录
+/node_modules
+package-lock.json
+
+# 排除子目录
+!blog/*
+!blog-admin/*
+!blog-server/*
+!blog-database/*
