@@ -4,3 +4,6 @@
 [submodule "blog-admin"]
 	path = blog-admin
 	url = git@github.com:MyNetdisk/blog-admin.git
+[submodule "blog-server"]
+	path = blog-server
+	url = git@github.com:MyNetdisk/blog-server.git
