@@ -1,12 +1,11 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('pull code') {
-            steps {
-               checkout([$class: 'GitSCM', branches: [[name: '*/${branch}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '571f959b-ec48-4ec9-819c-d3a25a99fffb', url: 'git@github.com:MyNetdisk/Blogs.git']]])
-            }
-        }
+//git credentials
+def git_auth = "571f959b-ec48-4ec9-819c-d3a25a99fffb"
+//git url
+def git_url = "git@github.com:MyNetdisk/Blogs.git"
+node {
+    // def mvnHome
+    stage('拉取代码') {
+        checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
     }
     post { 
         always { 
