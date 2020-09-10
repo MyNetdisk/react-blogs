@@ -1,66 +1,36 @@
 version: "3.8"
 
 services:
-  # traefik:
-  #   image: traefik:v2.2
-  #   command: --api.insecure=true --providers.docker
-  #   ports:
-  #     - "80:80"
-  #     - "8080:8080"
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-
-  # 改镜像会暴露出自身的 `header` 信息
-  # whoami:
-  #   image: containous/whoami
-  #   labels:
-  # 设置Host 为 whoami.docker.localhost 进行域名访问
-  # - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
-
   mysql:
     build:
-      context: ./mysql
-      dockerfile: Dockerfile
+      context: ./blog-database
+      dockerfile: ./docker/Dockerfile
     ports:
       - "3306:3306"
-    networks:
-      - backend
-    deploy:
 
   eggjs:
-    image:
+    build:
+      context: ./blog-server
+      dockerfile: ./docker/Dockerfile
     ports:
-      - "7001:80"
-    networks:
-      - backend
+      - "7001:7001"
     depends_on:
       - mysql
-    deploy:
 
   admin:
-    image:
+    build:
+      context: ./blog-admin
+      dockerfile: ./docker/Dockerfile
     ports:
-      - "3000:80"
-    networks:
-      - frontend
+      - "3000:3000"
     depends_on:
       - eggjs
-    deploy:
 
   blog:
-    image:
+    build:
+      context: ./blog
+      dockerfile: ./docker/Dockerfile
     ports:
-      - "3001:80"
-    networks:
-      - frontend
+      - "3001:3001"
     depends_on:
       - eggjs
-    deploy:
-
-volumes:
-
-networks:
-  frontend:
-  backend:
-
-configs:
