@@ -5,6 +5,9 @@ services:
     build:
       context: ./blog-database
       dockerfile: ./docker/Dockerfile
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
     ports:
       - "3306:3306"
 
@@ -12,6 +15,7 @@ services:
     build:
       context: ./blog-server
       dockerfile: ./docker/Dockerfile
+    restart: always
     ports:
       - "7001:7001"
     depends_on:
@@ -21,6 +25,7 @@ services:
     build:
       context: ./blog-admin
       dockerfile: ./docker/Dockerfile
+    restart: always
     ports:
       - "3000:3000"
     depends_on:
@@ -30,6 +35,7 @@ services:
     build:
       context: ./blog
       dockerfile: ./docker/Dockerfile
+    restart: always
     ports:
       - "3001:3001"
     depends_on:
