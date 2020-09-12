@@ -5,9 +5,17 @@ services:
     build:
       context: ./blog-database
       dockerfile: ./docker/Dockerfile
+    image: mysql:latest
+    container_name: mysql
     restart: always
+    volumes:
+      - $PWD/conf:/etc/mysql/conf.d
+      - $PWD/logs:/logs
+      - $PWD/data:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
+      - "ADMIN_USER_NAME=admin"
+      - "ADMIN_USER_PASSWORD=123456"
     ports:
       - "3306:3306"
 
@@ -15,6 +23,8 @@ services:
     build:
       context: ./blog-server
       dockerfile: ./docker/Dockerfile
+    image: eggjs:latest
+    container_name: eggjs
     restart: always
     ports:
       - "7001:7001"
@@ -25,6 +35,8 @@ services:
     build:
       context: ./blog-admin
       dockerfile: ./docker/Dockerfile
+    image: admin:latest
+    container_name: admin
     restart: always
     ports:
       - "3000:3000"
@@ -35,6 +47,8 @@ services:
     build:
       context: ./blog
       dockerfile: ./docker/Dockerfile
+    image: blog:latest
+    container_name: blog
     restart: always
     ports:
       - "3001:3001"
