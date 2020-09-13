@@ -9,8 +9,6 @@ services:
     container_name: mysql
     restart: always
     volumes:
-      - $PWD/conf:/etc/mysql/conf.d
-      - $PWD/logs:/logs
       - $PWD/data:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
