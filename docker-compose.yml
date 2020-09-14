@@ -10,6 +10,7 @@ services:
     restart: always
     privileged: true
     volumes:
+      - /opt/mysql/config/my.cnf:/etc/my.cnf
       - /opt/mysql/data:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
