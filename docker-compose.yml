@@ -8,7 +8,7 @@ services:
     image: mysql:latest
     container_name: mysql
     restart: always
-    privileged: true
+    # privileged: true
     volumes:
       - "/opt/mysql/data:/var/lib/mysql"
     environment:
