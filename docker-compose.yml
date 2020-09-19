@@ -8,8 +8,8 @@ services:
     image: mysql:latest
     container_name: mysql
     restart: always
-    volumes:
-      - /home/data:/var/lib/mysql
+    # volumes:
+    #   - /home/data:/var/lib/mysql
     # environment:
     #   - "MYSQL_ROOT_PASSWORD=123456"
     #   - "ADMIN_USER_NAME=admin"
