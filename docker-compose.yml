@@ -10,10 +10,10 @@ services:
     restart: always
     volumes:
       - /home/data:/var/lib/mysql
-    environment:
-      - "MYSQL_ROOT_PASSWORD=123456"
-      - "ADMIN_USER_NAME=admin"
-      - "ADMIN_USER_PASSWORD=admin"
+    # environment:
+    #   - "MYSQL_ROOT_PASSWORD=123456"
+    #   - "ADMIN_USER_NAME=admin"
+    #   - "ADMIN_USER_PASSWORD=admin"
     ports:
       - "3306:3306"
 
