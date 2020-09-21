@@ -9,6 +9,8 @@ services:
     container_name: mysql
     privileged: true
     restart: always
+    args:
+      - "--ignore-db-dir=lost+found"
     volumes:
       - /home/data:/var/lib/mysql
     environment:
