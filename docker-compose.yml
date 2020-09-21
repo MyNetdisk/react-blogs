@@ -17,6 +17,7 @@ services:
       - "ADMIN_USER_PASSWORD=admin"
     ports:
       - "3306:3306"
+    command: --disable-partition-engine-check
 
   eggjs:
     build:
