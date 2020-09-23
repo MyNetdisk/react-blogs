@@ -6,12 +6,10 @@ services:
       context: ./blog-database
       dockerfile: ./docker/Dockerfile
     image: mysql:latest
-    container_name: mysql
-    user: mysql
-    # privileged: true
+    container_name: MYSQL_ROOT_PASSWORD
     restart: always
     volumes:
-      - /home/data:/var/lib/mysql:z
+      - /home/data:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
       - "ADMIN_USER_NAME=admin"
