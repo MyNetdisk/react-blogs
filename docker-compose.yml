@@ -7,12 +7,11 @@ services:
       dockerfile: ./docker/Dockerfile
     image: mysql:latest
     container_name: mysql
-    user: "1000:50"
-    command: "--innodb_use_native_aio=0"
+    user: 1000:1000
     # privileged: true
     restart: always
     volumes:
-      - /home/data:/var/lib/mysql
+      - /home/data:/var/lib/mysql:Z
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
       - "ADMIN_USER_NAME=admin"
