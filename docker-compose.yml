@@ -6,7 +6,7 @@ services:
       context: ./blog-database
       dockerfile: ./docker/Dockerfile
     image: mysql:latest
-    container_name: MYSQL_ROOT_PASSWORD
+    container_name: mysql
     restart: always
     volumes:
       - /home/data:/var/lib/mysql
