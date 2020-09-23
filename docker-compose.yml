@@ -7,11 +7,11 @@ services:
       dockerfile: ./docker/Dockerfile
     image: mysql:latest
     container_name: mysql
-    user: 1000:1000
+    user: mysql
     # privileged: true
     restart: always
     volumes:
-      - /home/data:/var/lib/mysql:Z
+      - /home/data:/var/lib/mysql:z
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
       - "ADMIN_USER_NAME=admin"
