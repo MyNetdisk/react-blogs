@@ -9,7 +9,7 @@ services:
     container_name: mysql
     restart: always
     volumes:
-      - /home/data:/var/lib/mysql
+      - /opt/docker/mysql/data:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
       - "ADMIN_USER_NAME=admin"
