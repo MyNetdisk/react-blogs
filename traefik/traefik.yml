@@ -1,0 +1,57 @@
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: https
+  https:
+    address: ":443"
+    http:
+      # middlewares:
+      #   - secureHeaders@file
+      tls:
+        certResolver: letsencrypt
+        # domains:
+        #   - main: mynetdisk.top
+        #     sans:
+        #       - "*.mynetdisk.top"
+
+providers:
+  docker:
+    # 这个是表示要实时监听宿主机上的docker daemon中其它容器
+    watch: true
+    endpoint: "unix:///var/run/docker.sock"
+    # 我设置这个为false是因为我选择的是通过动态配置文件去管理其它服务, 而不是docker label, 这里设置为false的话dashboard那边就不会显示docker生成的router之类的信息了
+    # exposedByDefault: false
+  # file:
+  #   filename: /configurations/dynamic.yml
+  # 这个是表示要实时监听文件的变更
+  #   watch: true
+certificatesResolvers:
+  # le-dns:
+  #   acme:
+  #     email: peregrinator@yeah.net
+  #     storage: acme.json
+  #     keyType: EC384
+  #     dnsChallenge:
+  #       provider: acme-dns
+  letsencrypt:
+    acme:
+      email: peregrinator@yeah.net
+      storage: acme.json
+      keyType: EC384
+      httpChallenge:
+        entryPoint: http
+  buypass:
+    acme:
+      email: peregrinator@yeah.net
+      storage: acme.json
+      caServer: https://api.buypass.com/acme/directory
+      keyType: EC256
+      httpChallenge:
+        entryPoint: http

@@ -1,6 +1,30 @@
 version: "3.8"
 
 services:
+  traefik:
+    image: traefik:v2.2
+    container_name: traefik
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+      - 443:443
+    # environment:
+    #   - ACME_DNS_API_BASE=https://auth.acme-dns.io
+    #   - ACME_DNS_STORAGE_PATH=/acme-dns
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/docker/traefik/traefik.yml:/traefik.yml:ro
+      - /opt/docker/traefik/acme.json:/acme.json
+      # - /var/www/traefik/acme-dns:/acme-dns
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.mynetdisk.top`)"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
   mysql:
     build:
       context: ./blog-database
@@ -13,7 +37,7 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
       - "ADMIN_USER_NAME=admin"
-      - "ADMIN_USER_PASSWORD=admin"
+      - "ADMIN_USER_PASSWORD=123456"
     ports:
       - "3306:3306"
 
@@ -26,6 +50,9 @@ services:
     restart: always
     ports:
       - "7001:7001"
+    labels:
+      # 设置Host进行域名访问
+      - "traefik.http.routers.whoami.rule=Host(`api.mynetdisk.top`)"
     depends_on:
       - mysql
 
@@ -38,6 +65,9 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    labels:
+      # 设置Host进行域名访问
+      - "traefik.http.routers.whoami.rule=Host(`admin.mynetdisk.top`)"
     depends_on:
       - eggjs
 
@@ -50,5 +80,8 @@ services:
     restart: always
     ports:
       - "3001:3001"
+    labels:
+      # 设置Host进行域名访问
+      - "traefik.http.routers.whoami.rule=Host(`blog.mynetdisk.top`)"
     depends_on:
       - eggjs

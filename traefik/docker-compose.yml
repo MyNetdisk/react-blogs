@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  traefik:
+    image: traefik:v2.2
+    container_name: traefik
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+      - 443:443
+    # environment:
+    #   - ACME_DNS_API_BASE=https://auth.acme-dns.io
+    #   - ACME_DNS_STORAGE_PATH=/acme-dns
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/docker/traefik/traefik.yml:/traefik.yml:ro
+      - /opt/docker/traefik/acme.json:/acme.json
+      # - /var/www/traefik/acme-dns:/acme-dns
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.mynetdisk.top`)"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
+  whoami:
+    image: containous/whoami
+    labels:
+      # 设置Host 为 whoami.docker.localhost 进行域名访问
+      - "traefik.http.routers.whoami.rule=Host(`whoami.mynetdisk.top`)"
