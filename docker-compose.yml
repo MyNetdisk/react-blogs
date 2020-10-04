@@ -19,8 +19,11 @@ services:
       - /opt/docker/traefik/traefik.yml:/traefik.yml:ro
       - /opt/docker/traefik/acme.json:/acme.json
       # - /var/www/traefik/acme-dns:/acme-dns
+    networks:
+      - proxy
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
       - "traefik.http.routers.traefik-secure.rule=Host(`traefik.mynetdisk.top`)"
       - "traefik.http.routers.traefik-secure.service=api@internal"
@@ -40,6 +43,8 @@ services:
       - "ADMIN_USER_PASSWORD=123456"
     ports:
       - "3306:3306"
+    networks:
+      - proxy
 
   eggjs:
     build:
@@ -52,9 +57,13 @@ services:
       - "7001:7001"
     labels:
       # 设置Host进行域名访问
+      - "traefik.enable=true"
+      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.eggjs.rule=Host(`api.mynetdisk.top`)"
     depends_on:
       - mysql
+    networks:
+      - proxy
 
   admin:
     build:
@@ -67,9 +76,13 @@ services:
       - "3000:3000"
     labels:
       # 设置Host进行域名访问
+      - "traefik.enable=true"
+      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.admin.rule=Host(`admin.mynetdisk.top`)"
     depends_on:
       - eggjs
+    networks:
+      - proxy
 
   blog:
     build:
@@ -82,6 +95,14 @@ services:
       - "3001:3001"
     labels:
       # 设置Host进行域名访问
+      - "traefik.enable=true"
+      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.blog.rule=Host(`blog.mynetdisk.top`)"
     depends_on:
       - eggjs
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
