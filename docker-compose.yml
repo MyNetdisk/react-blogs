@@ -58,7 +58,6 @@ services:
     labels:
       # 设置Host进行域名访问
       - "traefik.enable=true"
-      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.eggjs.rule=Host(`api.mynetdisk.top`)"
     depends_on:
       - mysql
@@ -77,7 +76,6 @@ services:
     labels:
       # 设置Host进行域名访问
       - "traefik.enable=true"
-      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.admin.rule=Host(`admin.mynetdisk.top`)"
     depends_on:
       - eggjs
@@ -96,7 +94,6 @@ services:
     labels:
       # 设置Host进行域名访问
       - "traefik.enable=true"
-      - "traefik.docker.networks=proxy"
       - "traefik.http.routers.blog.rule=Host(`blog.mynetdisk.top`)"
     depends_on:
       - eggjs
