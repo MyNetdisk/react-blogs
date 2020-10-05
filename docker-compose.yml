@@ -74,7 +74,6 @@ services:
       - "7001:7001"
     labels:
       # 设置Host进行域名访问
-      - "mysql=localhost"
       - "traefik.enable=true"
       - "traefik.http.routers.eggjs.entrypoints=https"
       - "traefik.http.routers.eggjs.rule=Host(`api.mynetdisk.top`)"
