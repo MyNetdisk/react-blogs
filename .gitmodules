@@ -7,3 +7,6 @@
 [submodule "blog-database"]
 	path = blog-database
 	url = git@github.com:MyNetdisk/blog-database.git
+[submodule "blog-server"]
+	path = blog-server
+	url = git@github.com:MyNetdisk/blog-server.git
