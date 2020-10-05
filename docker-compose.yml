@@ -83,7 +83,7 @@ services:
     networks:
       - proxy
     links:
-      - mysql:localhost
+      - "mysql:localhost"
 
   admin:
     build:
