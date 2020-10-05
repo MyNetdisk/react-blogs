@@ -45,6 +45,25 @@ services:
     networks:
       - proxy
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - "8888:80"
+    environment:
+      - "PMA_HOST=mysql"
+    networks:
+      - proxy
+    labels:
+      # 设置Host进行域名访问
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.entrypoints=https"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`db.mynetdisk.top`)"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=8888"
+
   eggjs:
     build:
       context: ./blog-server
