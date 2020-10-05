@@ -82,6 +82,8 @@ services:
       - mysql
     networks:
       - proxy
+    links:
+      - mysql:localhost
 
   admin:
     build:
