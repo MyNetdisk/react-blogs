@@ -62,7 +62,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.phpmyadmin.entrypoints=https"
       - "traefik.http.routers.phpmyadmin.rule=Host(`db.mynetdisk.top`)"
-      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=8888"
 
   eggjs:
     build:
