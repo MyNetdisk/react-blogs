@@ -30,7 +30,7 @@ services:
   mysql:
     build:
       context: ./blog-database
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
     image: mysql:latest
     container_name: mysql
     restart: always
@@ -66,7 +66,7 @@ services:
   eggjs:
     build:
       context: ./blog-server
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
     image: eggjs:latest
     container_name: eggjs
     restart: always
@@ -86,7 +86,7 @@ services:
   admin:
     build:
       context: ./blog-admin
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
     image: admin:latest
     container_name: admin
     restart: always
@@ -106,7 +106,7 @@ services:
   blog:
     build:
       context: ./blog
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
     image: blog:latest
     container_name: blog
     restart: always
