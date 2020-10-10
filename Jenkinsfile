@@ -13,9 +13,10 @@ node {
             //删除所有镜像
             //sh "sudo docker rmi -f \$(docker images -q)"
             //启动服务
-            dir ('/var/lib/workspace/Blogs') { 
-                sh('deploy.sh')
-            }
+            // dir ('/var/lib/workspace/Blogs') { 
+            //     sh('deploy.sh')
+            // }
+            sh('/opt/docker/jenkins_shell/deploy.sh')
         }
     }catch(e){
         throw e
