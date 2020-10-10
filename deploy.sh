@@ -46,7 +46,7 @@ if [ "$imageId" != "" ] ; then
     #删除所有镜像
     docker rmi -f $imageId
 
-    echo "成功删除容器"
+    echo "成功删除镜像"
 fi
 
 sudo /usr/local/bin/docker-compose up -d
