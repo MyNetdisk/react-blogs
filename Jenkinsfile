@@ -2,6 +2,7 @@
 def git_auth = "571f959b-ec48-4ec9-819c-d3a25a99fffb"
 //git url
 def git_url = "git@github.com:MyNetdisk/Blogs.git"
+def containerID = sh(containerID = `docker ps -aq`)
 node {
     try{
         stage('pull the code') {
@@ -9,7 +10,7 @@ node {
         }
         stage('启动服务') {
             //停止所有容器
-            sh "containerID=`docker ps -aq` && sudo docker stop \$containerID"
+            sh "sudo docker stop ${containerID}"
             //删除所有容器
             //sh "sudo docker rm \$(docker ps -aq)"
             //删除所有镜像
