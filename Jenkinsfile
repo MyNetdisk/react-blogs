@@ -12,9 +12,8 @@ node {
             //sh "sudo docker rm \$(docker ps -aq)"
             //删除所有镜像
             //sh "sudo docker rmi -f \$(docker images -q)"
-            sh "cat docker-compose.yml"
             //启动服务
-            sh "docker-compose up"
+            sh('deploy.sh')
         }
     }catch(e){
         throw e
