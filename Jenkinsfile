@@ -2,17 +2,12 @@
 def git_auth = "571f959b-ec48-4ec9-819c-d3a25a99fffb"
 //git url
 def git_url = "git@github.com:MyNetdisk/Blogs.git"
-def containerID = sh(script: "docker ps -aq", returnStdout: true).trim()
-// def imagesID = sh(script: "docker images -q", returnStdout: true).trim()
 node {
     try{
         stage('pull the code') {
             checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
         }
         stage('启动服务') {
-            sh "echo ${containerID}"
-            //停止所有容器
-            sh "sudo docker stop ${containerID}"
             //删除所有容器
             //sh "sudo docker rm \$(docker ps -aq)"
             //删除所有镜像
