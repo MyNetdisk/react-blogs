@@ -14,7 +14,7 @@ node {
             //sh "sudo docker rmi -f \$(docker images -q)"
             sh "cat docker-compose.yml"
             //启动服务
-            sh "sudo docker-compose up"
+            sh "docker-compose up"
         }
     }catch(e){
         throw e
