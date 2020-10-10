@@ -90,7 +90,7 @@ services:
     #   context: ./blog-admin
     #   dockerfile: ./Dockerfile
     # image: admin:latest
-    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/admin:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-admin:latest
     container_name: admin
     restart: always
     ports:
