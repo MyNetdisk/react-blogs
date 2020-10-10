@@ -9,14 +9,14 @@ node {
         }
         stage('启动服务') {
             //停止所有容器
-            sh "docker stop \$(docker ps -aq)"
+            sh "sudo docker stop $(docker ps -aq)"
             //删除所有容器
-            sh "docker rm \$(docker ps -aq)"
+            sh "sudo docker rm $(docker ps -aq)"
             //删除所有镜像
-            sh "docker rmi -f \$(docker images -q)"
+            sh "sudo docker rmi -f $(docker images -q)"
             sh "cat docker-compose.yml"
             //启动服务
-            sh "docker-compose up"
+            sh "sudo docker-compose up"
         }
     }catch(e){
         throw e
