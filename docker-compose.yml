@@ -72,6 +72,8 @@ services:
     image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-server:latest
     container_name: eggjs
     restart: always
+    environment:
+      - "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD"
     ports:
       - "7001:7001"
     labels:

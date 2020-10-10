@@ -21,7 +21,7 @@ ADMIN_USER_NAME="admin"
 ADMIN_USER_PASSWORD="123456"
 
 #在此修改docker-compose.yml的环境变量：如mysql数据库管理员密码等敏感信息
-sed -i 's/$MYSQL_ROOT_PASSWORD/'$MYSQL_ROOT_PASSWORD'/' $docker_compose_path
+sed -i 's/$MYSQL_ROOT_PASSWORD/'$MYSQL_ROOT_PASSWORD'/g' $docker_compose_path
 sed -i 's/$ADMIN_USER_NAME/'$ADMIN_USER_NAME'/' $docker_compose_path
 sed -i 's/$ADMIN_USER_PASSWORD/'$ADMIN_USER_PASSWORD'/' $docker_compose_path
 
