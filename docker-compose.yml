@@ -28,10 +28,11 @@ services:
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
   mysql:
-    build:
-      context: ./blog-database
-      dockerfile: ./Dockerfile
-    image: mysql:latest
+    # build:
+    #   context: ./blog-database
+    #   dockerfile: ./Dockerfile
+    # image: mysql:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-database:latest
     container_name: mysql
     restart: always
     volumes:
@@ -64,10 +65,11 @@ services:
       - "traefik.http.routers.phpmyadmin.rule=Host(`db.mynetdisk.top`)"
 
   eggjs:
-    build:
-      context: ./blog-server
-      dockerfile: ./Dockerfile
-    image: eggjs:latest
+    # build:
+    #   context: ./blog-server
+    #   dockerfile: ./Dockerfile
+    # image: eggjs:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-server:latest
     container_name: eggjs
     restart: always
     ports:
@@ -84,10 +86,11 @@ services:
       - proxy
 
   admin:
-    build:
-      context: ./blog-admin
-      dockerfile: ./Dockerfile
-    image: admin:latest
+    # build:
+    #   context: ./blog-admin
+    #   dockerfile: ./Dockerfile
+    # image: admin:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/admin:latest
     container_name: admin
     restart: always
     ports:
@@ -104,10 +107,11 @@ services:
       - proxy
 
   blog:
-    build:
-      context: ./blog
-      dockerfile: ./Dockerfile
-    image: blog:latest
+    # build:
+    #   context: ./blog
+    #   dockerfile: ./Dockerfile
+    # image: admin:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog:latest
     container_name: blog
     restart: always
     ports:
