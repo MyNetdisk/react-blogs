@@ -3,8 +3,11 @@ set -e
 #此文件放在宿主机linux下任何目录下都可以 例如：/opt/docker/jenkins_shell/deploy.sh 同时加上可执行权限 chmod +x deploy.sh
 
 #查看当前目录
-project_path=$(pwd)
+project_path = $(pwd)
 echo $project_path
+#docker-compose.yml文件目录
+docker_compose_path = project_path + "/docker-compose.yml"
+echo $docker_compose_path
 
 #在此修改docker-compose.yml的环境变量：如mysql数据库管理员密码等敏感信息
 sed -i 's/$MYSQL_ROOT_PASSWORD/root/' /var/lib/jenkins/workspace/Blogs/docker-compose.yml
