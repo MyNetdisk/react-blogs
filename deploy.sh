@@ -1,1 +1,1 @@
-docker-compose up
+sudo /usr/local/bin/docker-compose up
