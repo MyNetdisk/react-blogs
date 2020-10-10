@@ -13,7 +13,9 @@ node {
             //删除所有镜像
             //sh "sudo docker rmi -f \$(docker images -q)"
             //启动服务
-            sh('deploy.sh')
+            dir ('/var/lib/workspace/Blogs') { 
+                sh('deploy.sh')
+            }
         }
     }catch(e){
         throw e
