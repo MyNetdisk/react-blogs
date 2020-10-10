@@ -8,14 +8,7 @@ node {
             checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
         }
         stage('启动服务') {
-            //删除所有容器
-            //sh "sudo docker rm \$(docker ps -aq)"
-            //删除所有镜像
-            //sh "sudo docker rmi -f \$(docker images -q)"
-            //启动服务
-            // dir ('/var/lib/workspace/Blogs') { 
-            //     sh('deploy.sh')
-            // }
+            //此文件放在宿主机linux下任何目录下都可以 例如：/opt/docker/jenkins_shell/deploy.sh 同时加上可执行权限 chmod +x deploy.sh
             sh('/opt/docker/jenkins_shell/deploy.sh')
         }
     }catch(e){
