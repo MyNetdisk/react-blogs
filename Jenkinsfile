@@ -7,6 +7,17 @@ node {
         stage('pull the code') {
             checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
         }
+        stage('启动服务') {
+            //停止所有容器
+            sh "docker stop \$(docker ps -aq)"
+            //删除所有容器
+            sh "docker rm \$(docker ps -aq)"
+            //删除所有镜像
+            sh "docker rmi -f \$(docker images -q)"
+            sh "cat docker-compose.yml"
+            //启动服务
+            sh "docker-compose up"
+        }
     }catch(e){
         throw e
     }finally{
