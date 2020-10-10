@@ -8,16 +8,12 @@ node {
             checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
         }
         stage('启动服务') {
-            //容器ID
-            sh "contanersID = `docker ps -aq`"
-            //镜像ID
-            sh "imagesID = `docker images -q`"
             //停止所有容器
-            sh "sudo docker stop $contanersID"
+            sh "sudo docker stop `$(docker ps -aq)`"
             //删除所有容器
-            sh "sudo docker rm $contanersID"
+            sh "sudo docker rm `$(docker ps -aq)`"
             //删除所有镜像
-            sh "sudo docker rmi -f $imagesID"
+            sh "sudo docker rmi -f `$(docker images -q)`"
             sh "cat docker-compose.yml"
             //启动服务
             sh "sudo docker-compose up"
