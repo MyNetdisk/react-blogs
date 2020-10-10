@@ -27,10 +27,26 @@ sed -i 's/$ADMIN_USER_PASSWORD/'$ADMIN_USER_PASSWORD'/' $docker_compose_path
 
 cat $docker_compose_path
 
-#停止所有容器
-docker stop $(docker ps -aq)
-#删除所有容器
-docker rm $(docker ps -aq)
-#删除所有镜像
-docker rmi $(docker images -q)
+#查询容器是否存在，存在则删除
+containerId=`docker ps -aq`
+
+if [ "$containerId" != "" ] ; then
+    #停止所有容器
+    docker stop $containerId
+    #删除所有容器
+    docker rm $containerId
+
+    echo "成功删除容器"
+fi
+
+#删除镜像是否存在，存在则删除
+imageId=`docker images -q`
+
+if [ "$imageId" != "" ] ; then
+    #删除所有镜像
+    docker rmi -f $imageId
+
+    echo "成功删除容器"
+fi
+
 sudo /usr/local/bin/docker-compose up -d
