@@ -9,7 +9,7 @@ node {
         }
         stage('启动服务') {
             //停止所有容器
-            sh "sudo docker stop ${docker ps -aq)}"
+            sh "sudo docker stop ${docker ps -aq}"
             //删除所有容器
             sh "sudo docker rm ${docker ps -aq}"
             //删除所有镜像
