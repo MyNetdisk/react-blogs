@@ -2,8 +2,8 @@
 def git_auth = "571f959b-ec48-4ec9-819c-d3a25a99fffb"
 //git url
 def git_url = "git@github.com:MyNetdisk/Blogs.git"
-def contanersID = sh("docker ps -aq")
-def imagesID = sh("docker images -q")
+def contanersID = sh "docker ps -aq"
+def imagesID = sh "docker images -q"
 node {
     try{
         stage('pull the code') {
