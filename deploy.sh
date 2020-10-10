@@ -6,7 +6,7 @@ set -e
 project_path = $(pwd)
 echo $project_path
 #docker-compose.yml文件目录
-docker_compose_path = project_path + "/docker-compose.yml"
+docker_compose_path = $project_path + "/docker-compose.yml"
 echo $docker_compose_path
 
 #在此修改docker-compose.yml的环境变量：如mysql数据库管理员密码等敏感信息
