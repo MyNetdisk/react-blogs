@@ -73,6 +73,7 @@ services:
     container_name: eggjs
     restart: always
     environment:
+      - "MYSQL_ROOT_HOST=$MYSQL_ROOT_HOST"
       - "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD"
     ports:
       - "7001:7001"
