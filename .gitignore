@@ -3,7 +3,7 @@
 package-lock.json
 
 # 排除子目录
-!blog/*
-!blog-admin/*
-!blog-server/*
-!blog-database/*
+!react-blog-web/*
+!react-blog-admin/*
+!react-blog-server/*
+!react-blog-database/*

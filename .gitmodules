@@ -1,12 +1,12 @@
-[submodule "blog"]
-	path = blog
-	url = git@github.com:MyNetdisk/blog.git
-[submodule "blog-admin"]
-	path = blog-admin
-	url = git@github.com:MyNetdisk/blog-admin.git
-[submodule "blog-database"]
-	path = blog-database
-	url = git@github.com:MyNetdisk/blog-database.git
-[submodule "blog-server"]
-	path = blog-server
-	url = git@github.com:MyNetdisk/blog-server.git
+[submodule "react-blog-web"]
+	path = react-blog-web
+	url = git@github.com:MyNetdisk/react-blog-web.git
+[submodule "react-blog-admin"]
+	path = react-blog-admin
+	url = git@github.com:MyNetdisk/react-blog-admin.git
+[submodule "react-blog-database"]
+	path = react-blog-database
+	url = git@github.com:MyNetdisk/react-blog-database.git
+[submodule "react-blog-server"]
+	path = react-blog-server
+	url = git@github.com:MyNetdisk/react-blog-server.git
