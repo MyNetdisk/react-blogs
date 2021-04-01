@@ -32,15 +32,15 @@ services:
     #   context: ./blog-database
     #   dockerfile: ./Dockerfile
     # image: mysql:latest
-    image: mynetdisk/blog-database:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-database:latest
     container_name: mysql
     restart: always
     volumes:
       - /opt/docker/mysql/data:/var/lib/mysql
     environment:
-      - "MYSQL_ROOT_PASSWORD=123456"
-      - "ADMIN_USER_NAME=admin"
-      - "ADMIN_USER_PASSWORD=123456"
+      - "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD"
+      - "ADMIN_USER_NAME=$ADMIN_USER_NAME"
+      - "ADMIN_USER_PASSWORD=$ADMIN_USER_PASSWORD"
     ports:
       - "3306:3306"
     networks:
@@ -69,12 +69,12 @@ services:
     #   context: ./blog-server
     #   dockerfile: ./Dockerfile
     # image: eggjs:latest
-    image: mynetdisk/blog-server:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-server:latest
     container_name: eggjs
     restart: always
     environment:
-      - "MYSQL_ROOT_HOST=mysql"
-      - "MYSQL_ROOT_PASSWORD=123456"
+      - "MYSQL_ROOT_HOST=$MYSQL_ROOT_HOST"
+      - "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD"
     ports:
       - "7001:7001"
     labels:
@@ -93,7 +93,7 @@ services:
     #   context: ./blog-admin
     #   dockerfile: ./Dockerfile
     # image: admin:latest
-    image: mynetdisk/blog-admin:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog-admin:latest
     container_name: admin
     restart: always
     ports:
@@ -114,7 +114,7 @@ services:
     #   context: ./blog
     #   dockerfile: ./Dockerfile
     # image: admin:latest
-    image: mynetdisk/blog:latest
+    image: registry.cn-qingdao.aliyuncs.com/mynetdisk/blog:latest
     container_name: blog
     restart: always
     ports:
