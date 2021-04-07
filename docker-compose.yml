@@ -32,7 +32,7 @@ services:
     #   context: ./blog-database
     #   dockerfile: ./Dockerfile
     # image: mysql:latest
-    image: mynetdisk/blog-database:latest
+    image: mynetdisk/react-blog-database:latest
     container_name: mysql
     restart: always
     volumes:
@@ -69,7 +69,7 @@ services:
     #   context: ./blog-server
     #   dockerfile: ./Dockerfile
     # image: eggjs:latest
-    image: mynetdisk/blog-server:latest
+    image: mynetdisk/react-blog-server:latest
     container_name: eggjs
     restart: always
     environment:
@@ -93,7 +93,7 @@ services:
     #   context: ./blog-admin
     #   dockerfile: ./Dockerfile
     # image: admin:latest
-    image: mynetdisk/blog-admin:latest
+    image: mynetdisk/react-blog-admin:latest
     container_name: admin
     restart: always
     ports:
@@ -114,7 +114,7 @@ services:
     #   context: ./blog
     #   dockerfile: ./Dockerfile
     # image: admin:latest
-    image: mynetdisk/blog:latest
+    image: mynetdisk/react-blog-web:latest
     container_name: blog
     restart: always
     ports:
